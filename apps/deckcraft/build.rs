@@ -8,20 +8,20 @@
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=../../assets/app-icon/deckcraft.ico");
-    println!("cargo:rerun-if-env-changed=DECKCRAFT_REQUIRE_WINRES");
+    println!("cargo:rerun-if-env-changed=BILLO DECK_REQUIRE_WINRES");
     if std::env::var("CARGO_CFG_TARGET_OS").as_deref() != Ok("windows") {
         return;
     }
     let mut res = winresource::WindowsResource::new();
     res.set_icon("../../assets/app-icon/deckcraft.ico")
-        .set("ProductName", "DeckCraft")
-        .set("FileDescription", "DeckCraft presentations")
+        .set("ProductName", "Billo Deck")
+        .set("FileDescription", "Billo Deck presentations")
         .set("CompanyName", "Learning Machines LLC")
         .set("LegalCopyright", "Copyright (c) the DeckCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "deckcraft.exe")
         .set("InternalName", "deckcraft");
     if let Err(e) = res.compile() {
-        if std::env::var_os("DECKCRAFT_REQUIRE_WINRES").is_some() {
+        if std::env::var_os("BILLO DECK_REQUIRE_WINRES").is_some() {
             eprintln!("embedding Windows resources failed: {e}");
             std::process::exit(1);
         }
